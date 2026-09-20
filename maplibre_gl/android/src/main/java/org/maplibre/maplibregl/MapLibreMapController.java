@@ -2736,8 +2736,10 @@ final class MapLibreMapController
   }
 
   private void invokeFeatureDrag(PointF pointf, String eventType) {
-    LatLng current = mapLibreMap.getProjection().fromScreenLocation(pointf);
+    invokeFeatureDrag(pointf, mapLibreMap.getProjection().fromScreenLocation(pointf), eventType);
+  }
 
+  private void invokeFeatureDrag(PointF pointf, LatLng current, String eventType) {
     final Map<String, Object> arguments = new HashMap<>(9);
     arguments.put("id", draggedFeature.id());
     arguments.put("x", pointf.x);
@@ -2756,6 +2758,11 @@ final class MapLibreMapController
   boolean onMove(MoveGestureDetector detector) {
     if (draggedFeature != null) {
       if (detector.getPointersCount() > 1) {
+        // A second finger ends the drag. Report the end where the feature was last dragged to:
+        // the focal point is now the midpoint of the two fingers. Without this the listeners
+        // never saw an "end", and onMoveEnd threw on the cleared feature.
+        invokeFeatureDrag(
+            mapLibreMap.getProjection().toScreenLocation(dragPrevious), dragPrevious, "end");
         stopDragging();
         return true;
       }
@@ -2767,6 +2774,10 @@ final class MapLibreMapController
   }
 
   void onMoveEnd(MoveGestureDetector detector) {
+    if (draggedFeature == null) {
+      // the drag already ended in onMove, when a second finger came down
+      return;
+    }
     PointF pointf = detector.getFocalPoint();
     invokeFeatureDrag(pointf, "end");
     stopDragging();
