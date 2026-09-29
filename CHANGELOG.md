@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [Unreleased]
+
+### Fixed
+* **iOS**: a feature drag the system interrupts (a call, Control Center, the app going to the background) now ends. It sent no `end` to `onFeatureDrag` and left scrolling off, so the next pan anywhere dragged the feature instead of the map.
+
 ## [0.27.1](https://github.com/maplibre/flutter-maplibre-gl/compare/v0.27.0...v0.27.1)
 
 ### Fixed
