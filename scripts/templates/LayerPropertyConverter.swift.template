@@ -3,9 +3,9 @@
 
 import MapLibre
 
-class LayerPropertyConverter {
+public class LayerPropertyConverter {
 {{#layerTypes}}
-    class func add{{typePascal}}Properties({{typeCamel}}Layer: MLN{{typePascal}}StyleLayer, properties: [String: Any]) {
+    public class func add{{typePascal}}Properties({{typeCamel}}Layer: MLN{{typePascal}}StyleLayer, properties: [String: Any]) {
         for (propertyName, propertyValue) in properties {
             // Check if the value is explicitly null to clear the property
             var expression: NSExpression?

@@ -18,9 +18,9 @@ import com.google.gson.JsonPrimitive;
 
 import static org.maplibre.maplibregl.Convert.toMap;
 
-class LayerPropertyConverter {
+public class LayerPropertyConverter {
 {{#layerTypes}}
-  static PropertyValue[] interpret{{typePascal}}LayerProperties(Object o) {
+  public static PropertyValue[] interpret{{typePascal}}LayerProperties(Object o) {
     final Map<String, Object> data = (Map<String, Object>) toMap(o);
     final List<PropertyValue> properties = new LinkedList();
     final Gson gson = new Gson();

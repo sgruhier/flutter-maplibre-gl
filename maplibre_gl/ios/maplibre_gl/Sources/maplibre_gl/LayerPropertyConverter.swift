@@ -251,7 +251,7 @@ public class LayerPropertyConverter {
         }
     }
 
-    class func addFillProperties(fillLayer: MLNFillStyleLayer, properties: [String: Any]) {
+    public class func addFillProperties(fillLayer: MLNFillStyleLayer, properties: [String: Any]) {
         for (propertyName, propertyValue) in properties {
             // Check if the value is explicitly null to clear the property
             var expression: NSExpression?
@@ -294,7 +294,7 @@ public class LayerPropertyConverter {
         }
     }
 
-    class func addFillExtrusionProperties(fillExtrusionLayer: MLNFillExtrusionStyleLayer, properties: [String: Any]) {
+    public class func addFillExtrusionProperties(fillExtrusionLayer: MLNFillExtrusionStyleLayer, properties: [String: Any]) {
         for (propertyName, propertyValue) in properties {
             // Check if the value is explicitly null to clear the property
             var expression: NSExpression?
@@ -337,7 +337,7 @@ public class LayerPropertyConverter {
         }
     }
 
-    class func addRasterProperties(rasterLayer: MLNRasterStyleLayer, properties: [String: Any]) {
+    public class func addRasterProperties(rasterLayer: MLNRasterStyleLayer, properties: [String: Any]) {
         for (propertyName, propertyValue) in properties {
             // Check if the value is explicitly null to clear the property
             var expression: NSExpression?
@@ -380,7 +380,7 @@ public class LayerPropertyConverter {
         }
     }
 
-    class func addHillshadeProperties(hillshadeLayer: MLNHillshadeStyleLayer, properties: [String: Any]) {
+    public class func addHillshadeProperties(hillshadeLayer: MLNHillshadeStyleLayer, properties: [String: Any]) {
         for (propertyName, propertyValue) in properties {
             // Check if the value is explicitly null to clear the property
             var expression: NSExpression?
@@ -419,7 +419,7 @@ public class LayerPropertyConverter {
         }
     }
 
-    class func addHeatmapProperties(heatmapLayer: MLNHeatmapStyleLayer, properties: [String: Any]) {
+    public class func addHeatmapProperties(heatmapLayer: MLNHeatmapStyleLayer, properties: [String: Any]) {
         for (propertyName, propertyValue) in properties {
             // Check if the value is explicitly null to clear the property
             var expression: NSExpression?

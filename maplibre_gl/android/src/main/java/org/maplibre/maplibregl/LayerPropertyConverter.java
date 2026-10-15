@@ -427,7 +427,7 @@ public class LayerPropertyConverter {
     return properties.toArray(new PropertyValue[properties.size()]);
   }
 
-  static PropertyValue[] interpretFillLayerProperties(Object o) {
+  public static PropertyValue[] interpretFillLayerProperties(Object o) {
     final Map<String, Object> data = (Map<String, Object>) toMap(o);
     final List<PropertyValue> properties = new LinkedList();
     final Gson gson = new Gson();
@@ -486,7 +486,7 @@ public class LayerPropertyConverter {
     return properties.toArray(new PropertyValue[properties.size()]);
   }
 
-  static PropertyValue[] interpretFillExtrusionLayerProperties(Object o) {
+  public static PropertyValue[] interpretFillExtrusionLayerProperties(Object o) {
     final Map<String, Object> data = (Map<String, Object>) toMap(o);
     final List<PropertyValue> properties = new LinkedList();
     final Gson gson = new Gson();
@@ -545,7 +545,7 @@ public class LayerPropertyConverter {
     return properties.toArray(new PropertyValue[properties.size()]);
   }
 
-  static PropertyValue[] interpretRasterLayerProperties(Object o) {
+  public static PropertyValue[] interpretRasterLayerProperties(Object o) {
     final Map<String, Object> data = (Map<String, Object>) toMap(o);
     final List<PropertyValue> properties = new LinkedList();
     final Gson gson = new Gson();
@@ -591,7 +591,7 @@ public class LayerPropertyConverter {
     return properties.toArray(new PropertyValue[properties.size()]);
   }
 
-  static PropertyValue[] interpretHillshadeLayerProperties(Object o) {
+  public static PropertyValue[] interpretHillshadeLayerProperties(Object o) {
     final Map<String, Object> data = (Map<String, Object>) toMap(o);
     final List<PropertyValue> properties = new LinkedList();
     final Gson gson = new Gson();
@@ -631,7 +631,7 @@ public class LayerPropertyConverter {
     return properties.toArray(new PropertyValue[properties.size()]);
   }
 
-  static PropertyValue[] interpretHeatmapLayerProperties(Object o) {
+  public static PropertyValue[] interpretHeatmapLayerProperties(Object o) {
     final Map<String, Object> data = (Map<String, Object>) toMap(o);
     final List<PropertyValue> properties = new LinkedList();
     final Gson gson = new Gson();
