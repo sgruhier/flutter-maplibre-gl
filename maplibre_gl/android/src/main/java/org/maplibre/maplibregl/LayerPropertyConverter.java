@@ -18,8 +18,8 @@ import com.google.gson.JsonPrimitive;
 
 import static org.maplibre.maplibregl.Convert.toMap;
 
-class LayerPropertyConverter {
-  static PropertyValue[] interpretSymbolLayerProperties(Object o) {
+public class LayerPropertyConverter {
+  public static PropertyValue[] interpretSymbolLayerProperties(Object o) {
     final Map<String, Object> data = (Map<String, Object>) toMap(o);
     final List<PropertyValue> properties = new LinkedList();
     final Gson gson = new Gson();
@@ -268,7 +268,7 @@ class LayerPropertyConverter {
     return properties.toArray(new PropertyValue[properties.size()]);
   }
 
-  static PropertyValue[] interpretCircleLayerProperties(Object o) {
+  public static PropertyValue[] interpretCircleLayerProperties(Object o) {
     final Map<String, Object> data = (Map<String, Object>) toMap(o);
     final List<PropertyValue> properties = new LinkedList();
     final Gson gson = new Gson();
@@ -335,7 +335,7 @@ class LayerPropertyConverter {
     return properties.toArray(new PropertyValue[properties.size()]);
   }
 
-  static PropertyValue[] interpretLineLayerProperties(Object o) {
+  public static PropertyValue[] interpretLineLayerProperties(Object o) {
     final Map<String, Object> data = (Map<String, Object>) toMap(o);
     final List<PropertyValue> properties = new LinkedList();
     final Gson gson = new Gson();

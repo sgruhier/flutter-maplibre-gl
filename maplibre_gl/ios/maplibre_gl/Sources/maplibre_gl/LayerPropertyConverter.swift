@@ -3,8 +3,8 @@
 
 import MapLibre
 
-class LayerPropertyConverter {
-    class func addSymbolProperties(symbolLayer: MLNSymbolStyleLayer, properties: [String: Any]) {
+public class LayerPropertyConverter {
+    public class func addSymbolProperties(symbolLayer: MLNSymbolStyleLayer, properties: [String: Any]) {
         for (propertyName, propertyValue) in properties {
             // Check if the value is explicitly null to clear the property
             var expression: NSExpression?
@@ -141,7 +141,7 @@ class LayerPropertyConverter {
         }
     }
 
-    class func addCircleProperties(circleLayer: MLNCircleStyleLayer, properties: [String: Any]) {
+    public class func addCircleProperties(circleLayer: MLNCircleStyleLayer, properties: [String: Any]) {
         for (propertyName, propertyValue) in properties {
             // Check if the value is explicitly null to clear the property
             var expression: NSExpression?
@@ -192,7 +192,7 @@ class LayerPropertyConverter {
         }
     }
 
-    class func addLineProperties(lineLayer: MLNLineStyleLayer, properties: [String: Any]) {
+    public class func addLineProperties(lineLayer: MLNLineStyleLayer, properties: [String: Any]) {
         for (propertyName, propertyValue) in properties {
             // Check if the value is explicitly null to clear the property
             var expression: NSExpression?
