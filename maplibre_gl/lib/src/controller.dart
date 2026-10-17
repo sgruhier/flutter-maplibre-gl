@@ -224,34 +224,44 @@ class MapLibreMapController extends ChangeNotifier {
       symbolManager = null;
 
       final interactionEnabled = annotationConsumeTapEvents.toSet();
-      for (final type in annotationOrder.toSet()) {
-        final enableInteraction = interactionEnabled.contains(type);
-        switch (type) {
-          case AnnotationType.fill:
-            fillManager = FillManager(
-              this,
-              enableInteraction: enableInteraction,
-            );
-            await fillManager!.initialize();
-          case AnnotationType.line:
-            lineManager = LineManager(
-              this,
-              enableInteraction: enableInteraction,
-            );
-            await lineManager!.initialize();
-          case AnnotationType.circle:
-            circleManager = CircleManager(
-              this,
-              enableInteraction: enableInteraction,
-            );
-            await circleManager!.initialize();
-          case AnnotationType.symbol:
-            symbolManager = SymbolManager(
-              this,
-              enableInteraction: enableInteraction,
-            );
-            await symbolManager!.initialize();
+      try {
+        for (final type in annotationOrder.toSet()) {
+          final enableInteraction = interactionEnabled.contains(type);
+          switch (type) {
+            case AnnotationType.fill:
+              fillManager = FillManager(
+                this,
+                enableInteraction: enableInteraction,
+              );
+              await fillManager!.initialize();
+            case AnnotationType.line:
+              lineManager = LineManager(
+                this,
+                enableInteraction: enableInteraction,
+              );
+              await lineManager!.initialize();
+            case AnnotationType.circle:
+              circleManager = CircleManager(
+                this,
+                enableInteraction: enableInteraction,
+              );
+              await circleManager!.initialize();
+            case AnnotationType.symbol:
+              symbolManager = SymbolManager(
+                this,
+                enableInteraction: enableInteraction,
+              );
+              await symbolManager!.initialize();
+          }
         }
+      } catch (error) {
+        // Nothing awaits this handler, so whatever escapes here is an
+        // unhandled exception. A style swapped mid-rebuild leaves no style
+        // to build on (iOS `styleNotFound`, Android `STYLE_NOT_READY`) and
+        // a dispose leaves no platform view; either way the rebuild is moot,
+        // and the load that replaces the style runs this handler again.
+        if (isDisposed || _isStyleGone(error)) return;
+        rethrow;
       }
       onStyleLoadedCallback?.call();
     });
@@ -288,6 +298,10 @@ class MapLibreMapController extends ChangeNotifier {
       onUserLocationUpdated?.call(location);
     });
   }
+
+  static bool _isStyleGone(Object error) =>
+      error is PlatformException &&
+      (error.code == 'styleNotFound' || error.code == 'STYLE_NOT_READY');
 
   Annotation? getAnnotationById(dynamic id) {
     if (id == null) return null;
